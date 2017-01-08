@@ -488,7 +488,7 @@ class OctoPrintOutputDevice(PrinterOutputDevice):
                         temperature = json_data["temperature"]["tool%d" % index]["actual"]
                         self._setHotendTemperature(index, temperature)
 
-                    bed_temperature = json_data["temperature"]["bed"]["actual"]
+                    bed_temperature = json_data["temperature"]["bed"]["actual"] if "bed" in json_data["temperature"] else 0
                     self._setBedTemperature(bed_temperature)
 
                     job_state = "offline"
